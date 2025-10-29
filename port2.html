@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lee Peckinpaugh | Security Researcher</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <meta name="description" content="Portfolio of Lee Peckinpaugh, Security Researcher with expertise in network security, system administration, and hardware">
+
+    <style>
+        /* --- Reset & Base --- */
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --primary-color: #007bff;
+            --text-color: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #4dabf7;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img, iframe {
+            max-width: 100%;
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: rgba(30, 30, 30, 0.9);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .logo .tagline {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .nav-list {
+            display: flex;
+        }
+
+        .nav-list li {
+            margin-left: 2rem;
+        }
+
+        .nav-link {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-color);
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+            border-bottom-color: var(--primary-color);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-color);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 60px; /* Offset for fixed header */
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background-color: #fff;
+            color: var(--bg-color);
+        }
+
+        /* --- About Section --- */
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background-color: var(--surface-color);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .skill-category h3 i {
+            margin-right: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        .skill-category ul {
+            list-style: disc;
+            padding-left: 1.25rem;
+        }
+
+        .skill-category li {
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Projects Section --- */
+        .project-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            padding: 1.5rem;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-overview {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-details h4 {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-details ul {
+            list-style: disc;
+            padding-left: 1.25rem;
+        }
+
+        .project-details li {
+            margin-bottom: 0.25rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Hobbies Section --- */
+        .hobby-item {
+            background-color: var(--surface-color);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .hobby-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hobby-item p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 8px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- Contact Section --- */
+        .contact-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            background-color: var(--surface-color);
+            color: var(--text-color);
+            border-radius: 5px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(0,123,255,0.5);
+        }
+
+        .form-group .btn {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--surface-color);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+        
+        .social-links {
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            font-size: 1.5rem;
+            margin: 0 0.75rem;
+            color: var(--text-muted);
+        }
+        
+        .social-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* =========================================
+        RESPONSIVE (MOBILE) STYLES
+        =========================================
+        */
+        @media (max-width: 768px) {
+            .navbar {
+                position: relative;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--surface-color);
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .nav-list {
+                display: none; /* Hidden by default */
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-list.active {
+                display: flex; /* Shown when active */
+            }
+
+            .nav-list li {
+                margin: 0;
+                text-align: center;
+            }
+
+            .nav-link {
+                display: block;
+                padding: 1rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .nav-link:hover {
+                background-color: rgba(0,0,0,0.2);
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+            
+            /* Animate hamburger to 'X' */
+            .mobile-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .mobile-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .mobile-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .hero {
+                height: auto;
+                padding: 8rem 0 4rem 0;
+            }
+
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .hero-cta a {
+                display: block;
+                margin: 1rem 0 0 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <h1>Lee Peckinpaugh</h1>
+                    <p class="tagline">Security Researcher</p>
+                </div>
+                <nav class="nav-menu">
+                    <button class="mobile-toggle" aria-label="Toggle navigation menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-list">
+                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#skills" class="nav-link">Skills</a></li>
+                        <li><a href="#projects" class="nav-link">Projects</a></li>
+                        <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Offensive Security & Research</h2>
+                    <p>From penetration testing to AI-driven defense development.</p>
+                    <div class="hero-cta">
+                        <a href="#about" class="btn btn-primary">Learn More</a>
+                        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about section" id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="section-content">
+                    <div class="about-text">
+                        <p>I am a dedicated security researcher with first hand knowledge on how to overcome an APT style attack. Specializing in network security, system administration, and hardware expertise, I have developed a comprehensive skill set that spans operating systems, virtualization technologies, network configurations, and cybersecurity practices.</p>
+                        <p>With a passion for both hardware and software aspects of security, I maintain a personal enterprise-grade lab environment for testing, research, and continuous skill development. This hands-on approach allows for practical application of theoretical security concepts and ensures that security implementations are thoroughly tested before deployment.</p>
+                        <p>My expertise extends to custom firmware development for network devices, penetration testing methodologies, and AI security applications. As technology continues to evolve, I remain committed to staying at the forefront of security research, consistently expanding knowledge in emerging threat vectors and defense strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills section" id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="section-content">
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3><i class="fas fa-desktop"></i> Operating Systems</h3>
+                            <ul>
+                                <li>Windows (all versions): Advanced configuration, hardening, and security implementation</li>
+                                <li>macOS: System administration, security configuration, and enterprise integration</li>
+                                <li>Linux: Multiple distributions, command-line proficiency, system hardening</li>
+                                <li>Server administration: Windows Server, Linux server variants</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3><i class="fas fa-server"></i> Virtualization & Infrastructure</h3>
+                            <ul>
+                                <li>Proxmox: Advanced implementation and management</li>
+                                <li>Type 1 hypervisors: Bare metal installation and configuration</li>
+                                <li>Enterprise server management: Dell PowerEdge servers</li>
+                                <li>Infrastructure design: Enterprise-grade network architectures</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3><i class="fas fa-network-wired"></i> Networking</h3>
+                            <ul>
+                                <li>Advanced network configuration</li>
+                                <li>Enterprise firewall implementation (open source)</li>
+                                <li>Routing protocols and optimization</li>
+                                <li>VLAN implementation and security</li>
+                                <li>Enterprise Cisco and HP switch configuration</li>
+                                <li>Enterprise-grade access point deployment and management</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
+                            <ul>
+                                <li>Network security architecture</li>
+                                <li>Penetration testing methodologies</li>
+                                <li>Vulnerability assessment</li>
+                                <li>Router firmware customization and security hardening</li>
+                                <li>Security tool development</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3><i class="fas fa-microchip"></i> Hardware</h3>
+                            <ul>
+                                <li>PC building and troubleshooting (30+ years experience)</li>
+                                <li>Laptop hardware repair and upgrades (20+ years experience)</li>
+                                <li>Server hardware implementation</li>
+                                <li>Network device configuration</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3><i class="fas fa-robot"></i> Artificial Intelligence</h3>
+                            <ul>
+                                <li>LLM prompt engineering and testing</li>
+                                <li>AI-powered security tool development</li>
+                                <li>AI vulnerability assessment</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects section" id="projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="section-content">
+                    <div class="project-cards">
+                        <div class="project-card">
+                            <h3>Enterprise-Grade Home Lab</h3>
+                            <div class="project-content">
+                                <p class="project-overview">Design and maintenance of a professional-grade home laboratory environment simulating enterprise network infrastructure for security research and testing.</p>
+                                
+                                <div class="project-details">
+                                    <h4>Key Components:</h4>
+                                    <ul>
+                                        <li>Dell PowerEdge servers with Proxmox</li>
+                                        <li>Enterprise-grade Cisco/HP switches</li>
+                                        <li>VLAN implementation</li>
+                                        <li>Comprehensive security monitoring</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h3>Router Firmware Customization</h3>
+                            <div class="project-content">
+                                <p class="project-overview">Customization of router firmware to enhance security, optimize performance, and implement advanced networking capabilities beyond manufacturer specifications.</p>
+                                
+                                <div class="project-details">
+                                    <h4>Security Enhancements:</h4>
+                                    <ul>
+                                        <li>Removal of default backdoors</li>
+                                        <li>Advanced firewall rule implementation</li>
+                                        <li>Enhanced logging and monitoring</li>
+                                        <li>Improved intrusion detection</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h3>Penetration Testing Framework</h3>
+                            <div class="project-content">
+                                <p class="project-overview">Development of a comprehensive penetration testing methodology for assessing network security, identifying vulnerabilities, and recommending remediation.</p>
+                                
+                                <div class="project-details">
+                                    <h4>Testing Components:</h4>
+                                    <ul>
+                                        <li>Network-level penetration testing</li>
+                                        <li>Vulnerability scanning</li>
+                                        <li>Social engineering simulations</li>
+                                        <li>Wireless network security testing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h3>AI-Powered Security Tools</h3>
+                            <div class="project-content">
+                                <p class="project-overview">Design and implementation of security tools enhanced with artificial intelligence for improved threat detection and incident response.</p>
+                                
+                                <div class="project-details">
+                                    <h4>Key Features:</h4>
+                                    <ul>
+                                        <li>LLM integration for log analysis</li>
+                                        <li>AI-assisted penetration testing</li>
+                                        <li>Machine learning for anomaly detection</li>
+                                        <li>Natural language processing for threat intel</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h3>PCAP SLAP</h3>
+                            <div class="project-content">
+                                <p class="project-overview">A command-line tool for reading, analyzing, and "slapping" PCAP (network packet capture) files to extract meaningful data.</p>
+                                <div class="project-details">
+                                    <h4>Repository:</h4>
+                                    <ul>
+                                        <li><a href="https://github.com/breakingcircuits1337/pcapslap" target="_blank" rel="noopener noreferrer">View on GitHub</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h3>Evolutionary LLM</h3>
+                            <div class="project-content">
+                                <p class="project-overview">Conceptual demonstration of evolving the weights of a multi-modal Transformer LLM using evolutionary principles.</p>
+                                <div class="project-details">
+                                    <h4>Repository:</h4>
+                                    <ul>
+                                        <li><a href="https://github.com/breakingcircuits1337/Evolutionary-LLM" target="_blank" rel="noopener noreferrer">View on GitHub</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h3>Quantum Computation Demo</h3>
+                            <div class="project-content">
+                                <p class="project-overview">A conceptual demonstration for quantum computation, exploring quantum-evolved variational circuits.</p>
+                                <div class="project-details">
+                                    <h4>Repository:</h4>
+                                    <ul>
+                                        <li><a href="https://github.com/breakingcircuits1337/Quantum-Evolved-Variational-Circuits" target="_blank" rel="noopener noreferrer">View on GitHub</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h3>Custom LLM (Claudson)</h3>
+                            <div class="project-content">
+                                <p class="project-overview">A custom Large Language Model (LLM) implementation, archived project from July 2025.</p>
+                                <div class="project-details">
+                                    <h4>Repository:</h4>
+                                    <ul>
+                                        <li><a href="https://github.com/breakingcircuits1337/claudson-20250724T083039Z-1-001" target="_blank" rel="noopener noreferrer">View on GitHub</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hobbies section" id="hobbies">
+            <div class="container">
+                <h2 class="section-title">Hobbies</h2>
+                <div class="section-content">
+                    
+                    <div class="hobby-item">
+                        <h3>Scambaiting</h3>
+                        <p>Here is a video about scambaiting where I get the scammer's site shut down while in the scam process.</p>
+                        <div class="video-container">
+                            <iframe 
+                                src="https://www.youtube.com/embed/6LaFxif5I7U" 
+                                title="Scambaiting Video" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <div class="hobby-item">
+                        <h3>Local Voice Assistant</h3>
+                        <p>This video demonstrates an always-on, 100% local voice assistant project.</p>
+                        <div class="video-container">
+                            <iframe 
+                                src="https://www.youtube.com/embed/wjp7x-JcXO0" 
+                                title="Always-On Local Voice Assistant Video" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section" id="contact">
+            <div class="container">
+                <h2 class="section-title">Contact</h2>
+                <div class="section-content">
+                    <div class="contact-info">
+                        <p>For professional inquiries, please reach out via the form below:</p>
+                    </div>
+                    <form id="contact-form" class="contact-form" action="mailto:brokencircuits@breakingcircuits.com" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Lee Peckinpaugh. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/brokencircuits" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/breakingcircuits1337" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Mobile Menu Toggle ---
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navList = document.querySelector('.nav-list');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', () => {
+                    navList.classList.toggle('active');
+                    mobileToggle.classList.toggle('active');
+                });
+            }
+            
+            // --- Close mobile menu when a link is clicked ---
+            if (navLinks) {
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navList.classList.contains('active')) {
+                            navList.classList.remove('active');
+                            mobileToggle.classList.remove('active');
+                        }
+                    });
+                });
+            }
+
+            // --- Footer: Auto-update Copyright Year ---
+            const currentYearSpan = document.getElementById('current-year');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+        });
+    </script>
+</body>
+</html>
